@@ -11,7 +11,7 @@ while True:
     print("6. Calcular venta total")
     print("7. Calcular venta por producto")
     print("8. Salir")
-
+    
     option = input("Seleccione una opción: ")
     
     if option == 1:
