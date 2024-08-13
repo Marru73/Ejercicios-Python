@@ -25,7 +25,14 @@ file_name = "mouredev_shop.txt"
 open(file_name, "a")
 
 while True:
-
+    print("1. Añadir producto")
+    print("2. Consultar producto")
+    print("3. Actualizar producto")
+    print("4. Borrar producto")
+    print("5. Mostrar productos")
+    print("6. Calcular venta total")
+    print("7. Calcular venta por producto")
+    print("8. Salir")
 
     option = input("Selecciona una opción: ")
 
