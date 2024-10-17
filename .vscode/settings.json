@@ -1,3 +1,4 @@
 {
-    "python.defaultInterpreterPath": "Python"
+    "python.defaultInterpreterPath": "Python",
+    "python.languageServer": "Pylance"
 }
