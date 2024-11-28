@@ -12,7 +12,7 @@ class Persona:
     
 class ListaPersonas:
     
-    personas = []
+    personas: list[Persona] = []
 
     def __init__(self):
         listaDePersonas = open("ficheroExterno", "ab+")
@@ -22,7 +22,7 @@ class ListaPersonas:
             self.personas=pickle.load(listaDePersonas)
             print("Se cargaron {} personas del fichero externo".format(len(self.personas)))
         
-        except:
+        except EOFError:
             print("El fichero está vacío")
 
         finally:
