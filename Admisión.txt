@@ -1,0 +1,38 @@
+
+    Fecha y hora: 11/12/2024 12:21:46
+    Nombre: FRANCISCO JOSE
+    Apellidos: JUNQUERO BLANCO
+    Dirección: MI CASA, 12B
+    Género: Masculino
+    ==================================================
+    
+    Fecha y hora: 11/12/2024 12:23:15
+    Nombre: FERNANDO
+    Apellidos: GUTIERREZ GOMEZ
+    Dirección: SU CASA, 1
+    Género: Masculino
+    ================================================== 
+    
+    Fecha y hora: 11/12/2024 12:27:19
+    Nombre: MERCEDES
+    Apellidos: JIMÉNEZ GONZÁLEZ
+    Dirección: LA LUNA,154
+    Género: FEMENINO
+    ==================================================
+    
+    Fecha y hora: 11/12/2024 12:32:08
+    Nombre: JUAN
+    Apellidos: MUÑOZ VALDERRAMA
+    Dirección: TRACTOR, 4
+    E-mail: JUANROVER@GMAIL.COM
+    Género: 
+    ==================================================
+    
+    Fecha y hora: 11/12/2024 12:48:48
+    Nombre: ELISEA
+    Apellidos: HUNTER
+    Dirección: LA LAGUNA
+    E-mail: WOW@GMAIL.COM
+    Género: FEMENINO
+    ==================================================
+    
