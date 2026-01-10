@@ -1,3 +1,4 @@
+"""
 # Solución: Tablas de Multiplicar en Formato Horizontal
 
 # 1. Configuración: ¿Cuántas tablas queremos por cada fila de la pantalla?
@@ -15,7 +16,7 @@ for inicio_bloque in range(1, 11, tablas_por_bloque):
         print(f"TABLA DEL {num_tabla}".ljust(15), end="\t")
     
     # Salto de línea después de los títulos y una línea decorativa
-    print("\n" + "-" * 85)
+    print("\n" + "-" * 76)
 
     # B. Imprimir las filas de multiplicaciones (del 1 al 10)
     for multiplicador in range(1, 11):
@@ -33,3 +34,21 @@ for inicio_bloque in range(1, 11, tablas_por_bloque):
     
     # Espacio en blanco al terminar un bloque de 5 tablas antes de empezar el siguiente
     print()
+"""
+tablas_por_bloque = 5
+
+for inicio in range(1, 11, tablas_por_bloque):
+
+    # Encabezados
+    for t in range(inicio, inicio + tablas_por_bloque):
+        print(f"TABLA DEL {t}".ljust(15), end="\t")
+    print("\n" + "-" * 85)
+
+    # Operaciones
+    for m in range(1, 11):
+        for t in range(inicio, inicio + tablas_por_bloque):
+            print(f"{t} x {m} = {t*m}".ljust(15), end="\t")
+        print()
+    print()
+
+
