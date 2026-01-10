@@ -1,4 +1,4 @@
- Solución: Tablas de Multiplicar en Formato Horizontal
+ # Solución: Tablas de Multiplicar en Formato Horizontal
 
 # 1. Configuración: ¿Cuántas tablas queremos por cada fila de la pantalla?
 # Usamos 5 para que quepa bien en la terminal sin amontonarse.
