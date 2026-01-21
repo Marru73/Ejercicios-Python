@@ -270,7 +270,7 @@ Si la suma está dentro del límite y la ventana es más larga que la máxima co
 
 ventas = [5, 2, 6, 1, 3, 2, 8, 4, 5, 7]
 i = 0
-mayor_sublista = []
+mayor_sublista: list[int] = []
 suma_maxima = 0
 suma_actual = 0
 
