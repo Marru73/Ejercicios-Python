@@ -298,3 +298,55 @@ print(f"Longitud: {len(mayor_sublista)} | Suma: {suma_maxima}")
 
 # Tip Pro: Usar 'suma_actual += ...' y 'suma_actual -= ...' es mucho más
 # eficiente que hacer 'sum(ventas[i:j])' en cada vuelta del bucle.
+
+
+
+# --- El mismo ejercicio anterior pero usando una función ---
+
+from typing import List, Tuple
+
+
+def sublista_mas_larga_bajo_limite(nums: List[int], limite: int) -> Tuple[List[int], int]:
+    """
+    Devuelve la sublista contigua más larga cuya suma es <= limite,
+    junto con la suma de esa sublista.
+
+    Complejidad: O(n)
+    """
+
+    inicio = 0
+    suma_actual = 0
+
+    mejor_i = 0
+    mejor_j = -1
+
+    for fin in range(len(nums)):
+        # expandimos ventana por la derecha
+        suma_actual += nums[fin]
+
+        # encogemos por la izquierda si superamos el límite
+        while suma_actual > limite:
+            suma_actual -= nums[inicio]
+            inicio += 1
+
+        # actualizamos mejor ventana si es más larga
+        if fin - inicio > mejor_j - mejor_i:
+            mejor_i = inicio
+            mejor_j = fin
+
+    sublista = nums[mejor_i : mejor_j + 1]
+    suma = sum(sublista)
+
+    return sublista, suma
+
+
+# --- uso de la función ---
+
+ventas = [5, 2, 6, 1, 3, 2, 8, 4, 5, 7]
+limite = 15
+
+sublista, suma = sublista_mas_larga_bajo_limite(ventas, limite)
+
+print(f"La sublista más larga es: {sublista}")
+print(f"Longitud: {len(sublista)} | Suma: {suma}")
+
