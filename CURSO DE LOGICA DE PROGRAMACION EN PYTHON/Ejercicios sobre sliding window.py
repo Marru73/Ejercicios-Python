@@ -589,3 +589,50 @@ sublista, suma = sublista_mas_larga(nums, limite)
 print(f"La sublista más larga es: {sublista}")
 print(f"Longitud: {len(sublista)}")
 print(f"Suma: {suma}")
+
+
+"""🟡 EJERCICIO 5 — suma EXACTA
+nums = [1, 2, 3, 2, 1, 1, 1, 3]
+k = 5
+
+Objetivo:
+
+Sublista contigua más larga cuya suma sea exactamente 5.
+"""
+from typing import List, Tuple
+
+def sublista_mas_larga_suma_igual_limite(nums: List[int], limite: int) -> Tuple[List[int], int]:
+    """Devuelve la sublista más larga cuya suma == limite
+    y la suma de esa sublista.
+"""
+
+    inicio = 0
+    suma_actual = 0
+
+    mejor_i = 0
+    mejor_j = -1
+
+    for fin in range(len(nums)):
+        suma_actual += nums[fin]
+
+        while suma_actual > limite:
+            suma_actual -= nums[inicio]
+            inicio += 1
+        if suma_actual == limite:
+            if fin - inicio > mejor_j - mejor_i:
+                mejor_i = inicio
+                mejor_j = fin
+
+    sublista = nums[mejor_i : mejor_j + 1]
+    suma = sum(sublista)
+
+    return sublista, suma
+    
+nums = [1, 2, 3, 2, 1, 1, 1, 3]
+limite = 5
+
+sublista, suma = sublista_mas_larga_suma_igual_limite(nums, limite)
+
+print(f"La sublista más larga es: {sublista}")
+print(f"Longitud: {len(sublista)}")
+print(f"Suma: {suma}")
