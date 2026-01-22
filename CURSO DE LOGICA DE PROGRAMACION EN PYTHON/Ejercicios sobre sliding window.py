@@ -555,29 +555,31 @@ Encontrar la sublista contigua más larga cuya suma sea menor o igual que 6."""
 from typing import List, Tuple
 
 def sublista_mas_larga(nums: List[int], limite: int) -> Tuple[List[int], int]:
-    """Devuelve una sublista <= límite
-    Devuelve la suma de la sublista.
+    """Devuelve la sublista más larga donde la suma <= limite.
+    También devuelve la suma de la misma.
     """
-    suma_actual = 0
+
     inicio = 0
+    suma_actual = 0
+
     mejor_i = 0
     mejor_j = -1
 
     for fin in range(len(nums)):
         suma_actual += nums[fin]
 
-        while suma_actual > limite:
+        while suma_actual >= limite:
             suma_actual -= nums[inicio]
             inicio += 1
-
+        
         if fin - inicio > mejor_j - mejor_i:
             mejor_i = inicio
             mejor_j = fin
 
-    sublista = nums[mejor_i : mejor_j + 1]
+    sublista = nums[mejor_i : mejor_j+1]
     suma = sum(sublista)
-    
-    return sublista, suma 
+
+    return sublista, suma
 
 nums = [3, 1, 2, 1, 1, 5, 1, 2, 3]
 limite = 6
