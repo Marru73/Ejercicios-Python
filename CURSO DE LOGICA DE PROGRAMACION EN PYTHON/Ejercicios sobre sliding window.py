@@ -540,3 +540,50 @@ sublista, suma = sublista_mas_larga_en_rango(nums, minimo, maximo)
 print(f"La sublista más larga es: {sublista}")
 print(f"Longitud: {len(sublista)}")
 print(f"Suma: {suma}")
+
+"""🟢 EJERCICIO 4 — Sublista más larga con suma ≤ límite (clásico)
+
+👉 Ya lo hiciste parecido, pero quiero que lo rehagas sin mirar lo anterior.
+
+nums = [3, 1, 2, 1, 1, 5, 1, 2, 3]
+limite = 6
+
+Objetivo:
+
+Encontrar la sublista contigua más larga cuya suma sea menor o igual que 6."""
+
+from typing import List, Tuple
+
+def sublista_mas_larga(nums: List[int], limite: int) -> Tuple[List[int], int]:
+    """Devuelve una sublista <= límite
+    Devuelve la suma de la sublista.
+    """
+    suma_actual = 0
+    inicio = 0
+    mejor_i = 0
+    mejor_j = -1
+
+    for fin in range(len(nums)):
+        suma_actual += nums[fin]
+
+        while suma_actual > limite:
+            suma_actual -= nums[inicio]
+            inicio += 1
+
+        if fin - inicio > mejor_j - mejor_i:
+            mejor_i = inicio
+            mejor_j = fin
+
+    sublista = nums[mejor_i : mejor_j + 1]
+    suma = sum(sublista)
+    
+    return sublista, suma 
+
+nums = [3, 1, 2, 1, 1, 5, 1, 2, 3]
+limite = 6
+
+sublista, suma = sublista_mas_larga(nums, limite)
+
+print(f"La sublista más larga es: {sublista}")
+print(f"Longitud: {len(sublista)}")
+print(f"Suma: {suma}")
