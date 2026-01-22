@@ -450,3 +450,93 @@ print(f"La sublista más larga es: {sublista}")
 print(f"Longitud: {len(sublista)}")
 print(f"Suma: {suma}")
 
+"""
+🟢 EJERCICIO 3 — Sublista más larga con suma en un rango
+
+Datos:
+
+nums = [2, 1, 3, 2, 4, 1, 1, 5, 1]
+minimo = 5
+maximo = 8
+
+🎯 Objetivo
+
+Encuentra la sublista contigua más larga tal que:
+
+minimo <= suma_sublista <= maximo
+
+
+Es decir, la suma tiene que estar dentro del rango, ni por debajo ni por encima.
+
+📌 Reglas (las mismas de antes)
+
+✔ Sliding window con dos punteros
+
+✔ Suma incremental (+= y -=)
+
+✔ Usar while para encoger la ventana
+
+❌ No usar sum() dentro del bucle
+
+✔ Guardar la mejor ventana por longitud
+
+🧠 Pista importante (para que no te atasques)
+
+Aquí hay dos razones para encoger la ventana:
+
+Si la suma es mayor que maximo → hay que encoger.
+
+Si la suma es menor que minimo → NO encoges, sigues expandiendo.
+
+O sea:
+
+encoges solo cuando te pasas por arriba
+
+mides solo cuando estás dentro del rango
+    """
+
+from typing import List, Tuple
+
+
+def sublista_mas_larga_en_rango(nums: List[int], minimo: int, maximo: int) -> Tuple[List[int], int]:
+    """
+    Devuelve la sublista contigua más larga cuya suma cumple:
+    minimo <= suma <= maximo
+    Devuelve también la suma de esa sublista.
+    """
+
+    inicio = 0
+    suma_actual = 0
+
+    mejor_i = 0
+    mejor_j = -1
+
+    for fin in range(len(nums)):
+        suma_actual += nums[fin]
+
+        # encogemos solo si superamos el máximo
+        while suma_actual > maximo:
+            suma_actual -= nums[inicio]
+            inicio += 1
+
+        # medimos solo si estamos dentro del rango
+        if minimo <= suma_actual <= maximo:
+            if fin - inicio > mejor_j - mejor_i:
+                mejor_i = inicio
+                mejor_j = fin
+
+    sublista = nums[mejor_i : mejor_j + 1]
+    suma = sum(sublista)
+
+    return sublista, suma
+
+
+nums = [2, 1, 3, 2, 4, 1, 1, 5, 1]
+minimo = 5
+maximo = 8
+
+sublista, suma = sublista_mas_larga_en_rango(nums, minimo, maximo)
+
+print(f"La sublista más larga es: {sublista}")
+print(f"Longitud: {len(sublista)}")
+print(f"Suma: {suma}")
