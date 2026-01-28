@@ -636,3 +636,129 @@ sublista, suma = sublista_mas_larga_suma_igual_limite(nums, limite)
 print(f"La sublista más larga es: {sublista}")
 print(f"Longitud: {len(sublista)}")
 print(f"Suma: {suma}")
+
+"""🟠 EJERCICIO 6 — Sublista MÁS CORTA con suma ≥ K
+nums = [2, 3, 1, 2, 4, 3]
+k = 7
+
+🎯 Objetivo
+
+Encontrar la sublista contigua más corta cuya suma sea mayor o igual que 7."""
+
+
+from typing import List, Tuple
+
+def sublista_mas_corta(nums: List[int], k: int) -> Tuple[List[int], int]:
+    """
+    Devuelve la sublista contigua más corta cuya suma es >= k
+    y la suma de dicha sublista. Si no existe, devuelve [], 0.
+    """
+
+    inicio = 0
+    suma_actual = 0
+
+    mejor_i = 0
+    mejor_j = -1
+    mejor_longitud = float("inf")
+
+    for fin in range(len(nums)):
+        # 1. Expandimos la ventana por la derecha
+        suma_actual += nums[fin]
+
+        # 2. Mientras la ventana sea válida (>= k), intentamos hacerla más pequeña
+        while suma_actual >= k:
+            longitud_actual = fin - inicio + 1
+
+            # 3. Medimos si esta ventana es mejor (más corta)
+            if longitud_actual < mejor_longitud:
+                mejor_longitud = longitud_actual
+                mejor_i = inicio
+                mejor_j = fin
+
+            # 4. Encogemos por la izquierda
+            suma_actual -= nums[inicio]
+            inicio += 1
+
+    # 5. Si nunca encontramos ventana válida
+    if mejor_j == -1:
+        return [], 0
+
+    sublista = nums[mejor_i : mejor_j + 1]
+    suma = sum(sublista)
+
+    return sublista, suma
+
+
+# -------- PRUEBA --------
+
+nums = [2, 3, 1, 2, 4, 3]
+k = 7
+
+sublista, suma = sublista_mas_corta(nums, k)
+
+print(f"La sublista más corta es: {sublista}")
+print(f"Longitud: {len(sublista)}")
+print(f"Suma: {suma}")
+
+
+"""🧠 Ejercicio 7 — Ventana con DOS condiciones
+👉 Enunciado
+
+Dado un array de enteros positivos nums, un entero k y un entero N:
+
+Encuentra la sublista contigua más larga tal que:
+✅ la suma ≤ k
+✅ el tamaño de la ventana ≤ N
+
+Devuelve los índices (i, j) de esa sublista.
+Si hay varias, vale cualquiera.
+
+nums = [2, 1, 3, 2, 1, 1, 1, 4]
+k = 6
+N = 3
+
+"""
+
+from typing import List, Tuple
+
+def sublista_mas_larga_con_varios_factores(nums: List[int], k: int, N: int) -> Tuple[List[int], int]:
+    inicio = 0
+    suma_actual = 0
+
+    mejor_i = 0
+    mejor_j = -1
+    mejor_longitud = 0
+
+    for fin in range(len(nums)):
+        # 1️⃣ expandir
+        suma_actual += nums[fin]
+
+        # 2️⃣ encoger mientras alguna condición se rompa
+        while suma_actual > k or (fin - inicio + 1) > N:
+            suma_actual -= nums[inicio]
+            inicio += 1
+
+        # 3️⃣ actualizar mejor ventana
+        longitud_actual = fin - inicio + 1
+        if longitud_actual > mejor_longitud:
+            mejor_longitud = longitud_actual
+            mejor_i = inicio
+            mejor_j = fin
+
+    if mejor_j == -1:
+        return [], 0
+    
+    sublista = nums[mejor_i : mejor_j + 1]
+    suma = sum(sublista)
+
+    return sublista, suma
+
+# 🔎 Test
+nums = [2, 1, 3, 2, 1, 1, 1, 4]
+k = 6
+N = 3
+
+sublista, suma = sublista_mas_larga_con_varios_factores(nums, k, N)
+print(f"La sublista más larga es: {sublista}")
+print(f"Longitud: {len(sublista)}")
+print(f"Suma: {suma}")
